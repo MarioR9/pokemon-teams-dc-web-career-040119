@@ -4,6 +4,7 @@ const POKEMONS_URL = `${BASE_URL}/pokemons`
 
 document.addEventListener("DOMContentLoaded", function(){
     fetchTrainersData()
+    addNewPokemon()
 })
 
 function fetchTrainersData(){
@@ -43,5 +44,8 @@ function addTrainerToDom(trainer){
 
     function addNewPokemon(){
 
-        fetch
+        fetch('http://localhost:3000/pokemons')
+        .then(response => response.json())
+        .then(newPokemon => console.log("prosessin new pokemon"))
+          
     }
