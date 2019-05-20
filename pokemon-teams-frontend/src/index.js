@@ -9,13 +9,15 @@ document.addEventListener("DOMContentLoaded", function(){
 function fetchTrainersData(){
 fetch('http://localhost:3000/trainers')
 .then(response => response.json())
-.then(trainersData => trainersData.forEach(addTrainerToDom))    
+.then(trainersData => trainersData.forEach(addTrainerToDom))  
+ 
 }
 
 //main will create more divs as need it
 
 function addTrainerToDom(trainer){
-    console.log
+    
+    let pokes = []
     let main = document.querySelector("main")
         let trainerDiv = document.createElement("div")
             trainerDiv.className = "card"
@@ -24,27 +26,22 @@ function addTrainerToDom(trainer){
                 let button = document.createElement("button")
                     button.dataset.TrainerId = trainer.id  
                     let ul = document.createElement("ul")
-                        let li = document.createElement('li')
-                            let liBtn = document.createElement('button')
-                                liBtn.className = 'release'
-                                
-                        
-                            
-
             name.innerText = trainer.name
             button.innerText = "catch a pokemon"
             //iteration over pokemons to get name,species and assing pokemon id to each pokemon
-           trainer.pokemons.forEach(pokemon =>
-                            li.innerText = `${pokemon.nickname} (${pokemon.species})`,
-                            ul.appendChild(li),  
-                            liBtn.innerText = "Release")
-                                
-                                
+           trainer.pokemons.forEach(pokemon =>{
+                            li = document.createElement('li') //creating a new li for every pokemon
+                            li.innerText = `${pokemon.nickname} (${pokemon.species})` //text for every li --pokemon description
+                            ul.appendChild(li)  //attaching to li to ul for trainer
+                            liBtn = document.createElement('button') //creating a new button for every li 
+                            liBtn.className = 'release'//setting up a class name for every  button
+                            li.appendChild(liBtn) //attaching to li
+                            liBtn.innerText = "Release"}) //texet for button    
             main.append(trainerDiv)
             trainerDiv.append(name,button,ul)
-            
-            li.appendChild(liBtn)
-
-
-
     }   
+
+    function addNewPokemon(){
+
+        fetch
+    }
